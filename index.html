@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathara Lab Generator — IDC</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <div class="toolbar-group">
+      <strong class="brand">Kathara Lab Generator</strong>
+      <label class="lab-name">Cartella lab
+        <input id="labNameInput" value="lab">
+      </label>
+    </div>
+    <div class="toolbar-group">
+      <button id="btnAddRouter" title="Aggiungi router">+ Router</button>
+      <button id="btnAddHost" title="Aggiungi host/PC">+ Host</button>
+      <button id="btnAddNetwork" title="Aggiungi rete/dominio di collisione">+ Rete</button>
+      <button id="btnLinkMode" title="Collega un dispositivo a una rete">🔗 Collega</button>
+      <button id="btnDelete" title="Elimina elemento selezionato">🗑 Elimina</button>
+    </div>
+    <div class="toolbar-group">
+      <label class="select-inline">Esempio
+        <select id="presetSelect">
+          <option value="">— carica esempio —</option>
+        </select>
+      </label>
+      <button id="btnNew">Nuovo</button>
+      <button id="btnSaveJson">Salva JSON</button>
+      <label class="file-btn">Carica JSON<input type="file" id="loadJsonInput" accept="application/json" hidden></label>
+      <button id="btnExportZip" class="primary">⬇ Genera lab (.zip)</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section class="canvas-wrap">
+      <svg id="topologySvg" viewBox="0 0 1400 820" preserveAspectRatio="xMidYMid meet"></svg>
+      <p id="linkModeHint" class="link-mode-hint hidden">Modalità collegamento attiva: clicca un dispositivo poi una rete (o viceversa). Esc per annullare.</p>
+    </section>
+    <aside id="inspector" class="inspector"></aside>
+  </main>
+
+  <footer class="statusbar">
+    <span id="statusText">Pronto.</span>
+  </footer>
+
+  <!-- Plain classic scripts (no bundler, no ES modules): works straight off the filesystem
+       via a double click on this file, with nothing installed and no local server needed.
+       Load order matters here since each file expects the previous ones to already be defined. -->
+  <script src="js/model.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/generator.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/inspector.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
